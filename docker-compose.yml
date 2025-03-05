@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb+srv://sumeetenso:OCILQWhbPx85tAHc@serverlessinstance0.jvoxbax.mongodb.net/Therapist?retryWrites=true&w=majority
+    depends_on:
+      - mongo
+    restart: always
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
+volumes:
+  mongo-data:
