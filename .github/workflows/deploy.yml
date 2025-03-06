@@ -13,21 +13,6 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-    - name: Fix File Permissions
-      run: |
-        chmod 644 docker-image.tar || true
-        sudo chown $(whoami) docker-image.tar || true
-
-    - name: Copy Files to EC2
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USERNAME }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        port: 5555
-        source: "docker-image.tar"
-        target: "~/dummy_therapist_portal/"
-
     - name: SSH into EC2 and Deploy
       uses: appleboy/ssh-action@master
       with:
@@ -37,8 +22,6 @@ jobs:
         port: 22
         script: |
           cd ~/dummy_therapist_portal
-          chmod 644 docker-image.tar || true
-          sudo chown ubuntu:ubuntu docker-image.tar || true
           docker load -i docker-image.tar
           docker-compose down
           docker-compose up -d
