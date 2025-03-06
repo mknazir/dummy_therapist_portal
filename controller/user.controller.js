@@ -1306,7 +1306,7 @@ const getAllTherapistByConcern = async (req, res) => {
     const specializationCollection = db.collection("specialization");
 
     // Define the query object
-    let query = { role: "therapist", isActive: true };
+    let query = { role: "therapist", isActive: false };
 
     // Only filter by concerns if concernIds is provided and not null
     if (concernIds && concernIds.length > 0) {
