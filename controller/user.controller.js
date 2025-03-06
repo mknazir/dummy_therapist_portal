@@ -863,7 +863,7 @@ const getAllTherapist = async (req, res) => {
     const expertiseCollection = db.collection("expertise");
     const specializationCollection = db.collection("specialization");
     
-    const therapists = await db.collection("users").find({ role: "therapist",isActive:true }).toArray();
+    const therapists = await db.collection("users").find({ role: "therapist",isActive:false }).toArray();
         // Enrich therapists with concerns, expertise, and specialization
         for (let therapist of therapists) {
           if (therapist.concerns && therapist.concerns.length > 0) {

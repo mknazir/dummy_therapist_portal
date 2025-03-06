@@ -4,14 +4,14 @@ services:
   backend:
     build: .
     ports:
-      - "3000:3000"
-    environment:
-      - MONGO_URI=mongodb+srv://sumeetenso:OCILQWhbPx85tAHc@serverlessinstance0.jvoxbax.mongodb.net/Therapist?retryWrites=true&w=majority
+      - "5555:5555"
+    env_file:
+      - .env
     depends_on:
-      - mongo
+      - mongodb
     restart: always
 
-  mongo:
+  mongodb:
     image: mongo
     container_name: mongodb
     ports:
