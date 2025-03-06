@@ -3,7 +3,7 @@ name: Deploy Backend to EC2
 on:
   push:
     branches:
-      - main
+      - main  # Change if using a different branch
 
 jobs:
   deploy:
@@ -19,9 +19,11 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_KEY }}
-        port: 22
+        port: 5555
         script: |
           cd ~/dummy_therapist_portal
-          docker load -i docker-image.tar
+          git reset --hard origin/main
+          git pull origin main
           docker-compose down
+          docker build -t dummy_therapist_portal_backend .
           docker-compose up -d
