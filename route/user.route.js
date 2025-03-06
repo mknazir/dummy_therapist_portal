@@ -32,7 +32,7 @@ userRouter.post('/uploadProfilePicture', authenticateToken, uploadProfilePicture
 userRouter.post('/uploadClientProfilePicture', authenticateToken, uploadClientProfilePicture);
 userRouter.post('/updateUserProfileDetail',authenticateToken, updateUserProfileDetail);
 userRouter.get('/getAllPrescriptionsByUser', authenticateToken, getAllPrescriptionsByUser);
-userRouter.post('/getAllTherapistByConcernbyt', authenticateToken, getAllTherapistByConcern);
+userRouter.post('/getAllTherapistByConcern', authenticateToken, getAllTherapistByConcern);
 userRouter.get('/getClientBookingHistory/:clientId', authenticateToken, getClientBookingHistory);
 userRouter.get('/getAllLiveChatTherapist',authenticateToken , getAllLiveChatTherapist);
 userRouter.post('/startChat',authenticateToken , startChat);
